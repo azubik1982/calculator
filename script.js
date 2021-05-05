@@ -2,7 +2,6 @@ let numbers = document.querySelectorAll(".number"),
     operations = document.querySelectorAll(".operator"),
     clearBtns = document.querySelectorAll(".clear-btn"),
     decimalBtn = document.getElementById("decimal"),
-    result = document.getElementById("result"),
     display = document.getElementById("display"),
     MemoryCurrentNumber = 0,
     MemoryNewNumber = false,
@@ -30,6 +29,9 @@ for(i = 0; i < clearBtns.length; i++) {
 };
 
 decimalBtn.addEventListener("click", decimal);
+result.addEventListener("click", function(e){
+    console.log("Клик по result")
+});
 
 function numberPress(number) {
     if(MemoryNewNumber) {
@@ -45,29 +47,26 @@ function numberPress(number) {
 };
 
 function operationPress(op) {
-    const localOperationMemory = display.value;
+    let localOperationMemory = display.value;
 
-    if (MemoryNewNumber && MemoryPendingOperation !== "=") {
+    if(MemoryNewNumber && MemoryPendingOperation !== "=") {
         display.value = MemoryCurrentNumber;
     } else {
         MemoryNewNumber = true;
-
-        switch (MemoryPendingOperation) {
-            case "+": MemoryCurrentNumber += localOperationMemory;
-            break;
-            case "-": MemoryCurrentNumber -= localOperationMemory;
-            break;
-            case "*": MemoryCurrentNumber *= localOperationMemory;
-            break;
-            case "/": MemoryCurrentNumber /= localOperationMemory;
-            break;
-            default: MemoryCurrentNumber = +localOperationMemory;
+        if (MemoryPendingOperation === "+") {
+            MemoryCurrentNumber += +localOperationMemory;
+        } else if (MemoryPendingOperation === "-") {
+            MemoryCurrentNumber -= +localOperationMemory;
+        } else if (MemoryPendingOperation === "*") {
+            MemoryCurrentNumber *= +localOperationMemory;
+        } else if (MemoryPendingOperation === "/") {
+            MemoryCurrentNumber /= +localOperationMemory;
+        } else {
+            MemoryCurrentNumber = +localOperationMemory;
         }
-
         display.value = MemoryCurrentNumber;
-
         MemoryPendingOperation = op;
-    }
+    };
 };
 
 function decimal(argument) {
@@ -86,7 +85,7 @@ function decimal(argument) {
 
 function clear(id) {
     if(id === "ce") {
-        display.value = "0";
+        display.value = "0"
         MemoryNewNumber = true;
     } else if(id === "c") {
         display.value = "0"
