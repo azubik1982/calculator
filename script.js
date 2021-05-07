@@ -29,9 +29,6 @@ for(i = 0; i < clearBtns.length; i++) {
 };
 
 decimalBtn.addEventListener("click", decimal);
-result.addEventListener("click", function(e){
-    console.log("Клик по result")
-});
 
 function numberPress(number) {
     if(MemoryNewNumber) {
