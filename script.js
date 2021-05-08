@@ -50,20 +50,13 @@ function operationPress(op) {
         display.value = MemoryCurrentNumber;
     } else {
         MemoryNewNumber = true;
-        if (MemoryPendingOperation === "+") {
-            MemoryCurrentNumber += +localOperationMemory;
-        } else if (MemoryPendingOperation === "-") {
-            MemoryCurrentNumber -= +localOperationMemory;
-        } else if (MemoryPendingOperation === "*") {
-            MemoryCurrentNumber *= +localOperationMemory;
-        } else if (MemoryPendingOperation === "/") {
-            MemoryCurrentNumber /= +localOperationMemory;
-        } else {
-            MemoryCurrentNumber = +localOperationMemory;
+        (MemoryPendingOperation === "+") ? MemoryCurrentNumber += +localOperationMemory : (MemoryPendingOperation === "-") ? MemoryCurrentNumber -= +localOperationMemory :
+        (MemoryPendingOperation === "*") ? MemoryCurrentNumber *= +localOperationMemory :
+        (MemoryPendingOperation === "/") ? MemoryCurrentNumber /= +localOperationMemory :
+        MemoryCurrentNumber = +localOperationMemory;
         }
         display.value = MemoryCurrentNumber;
         MemoryPendingOperation = op;
-    };
 };
 
 function decimal(argument) {
