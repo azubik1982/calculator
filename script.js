@@ -1,9 +1,10 @@
-const numbers = document.querySelectorAll(".number"),
-    operations = document.querySelectorAll(".operator"),
-    clearBtns = document.querySelectorAll(".clear-btn"),
-    decimalBtn = document.getElementById("decimal"),
-    display = document.getElementById("display"),
-    calcResultMaxNumberLength = 16;
+const doc = document,
+      numbers = doc.querySelectorAll(".number"),
+      operations = doc.querySelectorAll(".operator"),
+      clearBtns = doc.querySelectorAll(".clear-btn"),
+      decimalBtn = doc.getElementById("decimal"),
+      display = doc.getElementById("display"),
+      calcResultMaxNumberLength = 16;
 let MemoryCurrentNumber = 0,
     MemoryNewNumber = false,
     MemoryPendingOperation = "";
@@ -21,7 +22,7 @@ function numberPress(number) {
     } else {
         display.value =  (display.value === "0") ? number : display.value + number;
     };
-    display.value = display.value.substring(0,calcResultMaxNumberLength);
+    display.value = display.value.substring(0, calcResultMaxNumberLength);
 };
 
 for(let i = 0; i < operations.length; i++) {
